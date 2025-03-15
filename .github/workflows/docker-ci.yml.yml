@@ -1,51 +1,48 @@
-name: CI/CD for Docker Compose
+name: Build and Push Docker Images
 
 on:
   push:
     branches:
-      - main  # Runs when pushing to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Runs on PR to main
+      - main
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository 
-        uses: actions/checkout@v3
-
-      - name: Set up Docker BuildKit
-        run: export DOCKER_BUILDKIT=1
-
-      - name: Build and Start Containers
-        run: docker-compose up -d --build
-
-      - name: Run Backend Tests
-        run: docker exec nestjs-backend npm test
-
-      - name: Run Frontend Tests
-        run: docker exec vite-frontend npm test
-
-      - name: Stop and Clean Up
-        run: docker-compose down
-
-  push-to-dockerhub:
-    needs: build-and-test
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      - name: Build and Start Containers
+        run: docker-compose up -d --build
+
+      - name: Run Backend Tests
+        run: docker exec nestjs-backend npm test || exit 1
+
+      - name: Run Frontend Tests
+        run: docker exec vite-frontend npm test || exit 1
+
+      - name: Stop and Clean Up
+        run: docker-compose down
 
       - name: Build and Push Backend Image
         run: |
           docker build -t your-dockerhub-username/nestjs-backend ./backend
+          docker tag your-dockerhub-username/nestjs-backend your-dockerhub-username/nestjs-backend:latest
           docker push your-dockerhub-username/nestjs-backend
 
       - name: Build and Push Frontend Image
         run: |
           docker build -t your-dockerhub-username/vite-frontend ./frontend
+          docker tag your-dockerhub-username/vite-frontend your-dockerhub-username/vite-frontend:latest
           docker push your-dockerhub-username/vite-frontend
