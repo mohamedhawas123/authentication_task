@@ -32,6 +32,7 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   //guard to protect endpoint
   @ApiBody({ type: LoginDto }) //to pass login dto to swagger
+  //ensures that only users with valid credentials can proceed with the login method
   @UseGuards(LocalAuthGuard)
   @Post('login')
   // login user

@@ -14,11 +14,12 @@ import { RequestLoggerMiddleware } from './common/middleware/request-logger.midd
   controllers: [AppController],
   providers: [
     {
-      provide: APP_FILTER,
+      provide: APP_FILTER, //registers a global exception filter to handle HTTP exceptions
       useClass: HttpExceptionFilter,
     },
     {
-      provide: APP_INTERCEPTOR,
+      provide: APP_INTERCEPTOR, //registers a global interceptor for logging request/response data
+
       useClass: LoggingInterceptor,
     },
     AppService,
@@ -26,6 +27,6 @@ import { RequestLoggerMiddleware } from './common/middleware/request-logger.midd
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestLoggerMiddleware).forRoutes('*'); // to Apply to all routes
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*'); // to Apply middleware to all routes
   }
 }

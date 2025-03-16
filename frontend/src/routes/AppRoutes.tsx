@@ -10,11 +10,11 @@ const AppRoutes = () => {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Public Routes (Accessible Without Login) */}
+          {/* Public Routes (accessible Without Login) */}
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
 
-          {/* Protected Routes (Requires Login) */}
+          {/* protected Routes (Requires Login) */}
           <Route
             path="/profile"
             element={

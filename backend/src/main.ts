@@ -29,9 +29,10 @@ async function bootstrap() {
       transform: true, //  Transforms request data into DTO instances
     }),
   );
+  // to Prevents abuse and DDoS attacks Limits excessive requests from a single IP.
   app.use(
     rateLimit({
-      windowMs: 15 * 60 * 1000,
+      windowMs: 15 * 60 * 1000, // 15 minutes time window
       max: 100, //  Limit each IP to 100 requests per window
       message: 'Too many requests from this IP, please try again later',
     }),

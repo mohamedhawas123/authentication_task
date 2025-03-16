@@ -14,7 +14,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/signin"); // Redirect if no token
+      navigate("/signin"); // redirect if no token
       return;
     }
 
@@ -35,6 +35,7 @@ const ProfilePage = () => {
   }, [token, logout, navigate]);
 
   const handleLogout = () => {
+    //logout and navigate
     logout();
     navigate("/signin");
   };

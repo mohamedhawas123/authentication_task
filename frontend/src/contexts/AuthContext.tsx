@@ -53,6 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
+    //This component wraps around the  application  and provides authentication state to child components
     <AuthContext.Provider value={{ token, login, logout }}>
       {children}
     </AuthContext.Provider>

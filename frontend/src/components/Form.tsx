@@ -15,17 +15,21 @@ interface AuthFormProps {
 interface AuthFormValues {
   email: string;
   password: string;
-  name?: string; // nnly used for sign-up
+  name?: string; // only used for sign-up
 }
 
-// Validation schemas for Sign In and Sign Up
+// validation schemas for Sign In
 const signInSchema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: yup.string().required("Password is required"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .required("Password is required"),
 });
+// validation schemas for  Sign Up
 
 const signUpSchema = yup.object().shape({
   email: yup
@@ -53,10 +57,12 @@ const AuthForm = ({ isSignUp = false }: AuthFormProps) => {
   });
 
   const {
+    //extract handle submit from methods (userForm)
     handleSubmit,
     formState: { isValid },
   } = methods;
 
+  //extract login from userAuth
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = `${import.meta.env.VITE_BASE_URL}`; // Adjust if needed
 
-// Fetch user profile
+// service fetch user profile
 export const getProfile = async (token: string) => {
   try {
     console.log(token);

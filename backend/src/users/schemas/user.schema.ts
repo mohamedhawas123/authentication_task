@@ -3,6 +3,7 @@ import { Types } from 'mongoose';
 
 export type UserDocument = User & Document;
 
+//Schema for databse
 @Schema({ timestamps: true })
 export class User {
   _id: Types.ObjectId;

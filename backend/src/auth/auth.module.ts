@@ -16,6 +16,7 @@ import { LocalStrategy } from './strategies/local.strategy';
       signOptions: { expiresIn: '23h' }, // token expires in 23 hour
     }),
   ],
+  
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, LocalStrategy],
   exports: [AuthService],

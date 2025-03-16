@@ -9,10 +9,14 @@ interface ButtonProps {
 const Button = ({ label, disabled, onClick }: ButtonProps) => {
   const [loading, setLoading] = useState(false);
 
+
+  //onClick Method
   const handleClick = async () => {
     if (onClick) {
+      //set loader first
       setLoading(true);
       await onClick();
+      //then stop it
       setLoading(false);
     }
   };
