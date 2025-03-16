@@ -45,3 +45,4 @@ jobs:
           docker build -t your-dockerhub-username/vite-frontend ./frontend
           docker tag your-dockerhub-username/vite-frontend your-dockerhub-username/vite-frontend:latest
           docker push your-dockerhub-username/vite-frontend
+
