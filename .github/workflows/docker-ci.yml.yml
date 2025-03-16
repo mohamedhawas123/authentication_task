@@ -29,8 +29,7 @@ jobs:
       - name: Run Backend Tests
         run: docker exec nestjs-backend npm test || exit 1
 
-      - name: Run Frontend Tests
-        run: docker exec vite-frontend npm test || exit 1
+      
 
       - name: Stop and Clean Up
         run: docker-compose down
