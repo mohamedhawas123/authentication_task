@@ -36,13 +36,15 @@ jobs:
 
       - name: Build and Push Backend Image
         run: |
-          docker build -t your-dockerhub-username/nestjs-backend ./backend
-          docker tag your-dockerhub-username/nestjs-backend your-dockerhub-username/nestjs-backend:latest
-          docker push your-dockerhub-username/nestjs-backend
+          docker build -t mohamedhawas123/authentication-task-backend ./backend
+          docker tag mohamedhawas123/authentication-task-backend mohamedhawas123/authentication-task:backend-latest
+          docker push mohamedhawas123/authentication-task:backend-latest
+
 
       - name: Build and Push Frontend Image
         run: |
-          docker build -t your-dockerhub-username/vite-frontend ./frontend
-          docker tag your-dockerhub-username/vite-frontend your-dockerhub-username/vite-frontend:latest
-          docker push your-dockerhub-username/vite-frontend
+          docker build -t mohamedhawas123/authentication-task-frontend ./frontend
+          docker tag mohamedhawas123/authentication-task-frontend mohamedhawas123/authentication-task:frontend-latest
+          docker push mohamedhawas123/authentication-task:frontend-latest
+
 
