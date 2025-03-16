@@ -4,12 +4,14 @@ import AuthForm from "../components/Form";
 
 const SignUpPage = () => {
   return (
-    <div className="flex h-screen">
-      {/* Left Column */}
-      <div className="w-1/2 flex flex-col items-center justify-center p-6">
+    <div className="flex h-screen flex-col md:flex-row">
+      {/* Left Column (Form) */}
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6">
         <div className="flex flex-col w-full max-w-md">
-          <h1 className="font-bold text-[28px]">Create an Account</h1>
-          <p className="font-normal text-[14px] mt-2">
+          <h1 className="font-bold text-[28px] text-center md:text-left">
+            Create an Account
+          </h1>
+          <p className="font-normal text-[14px] mt-2 text-center md:text-left">
             Fill in the details below to register.
           </p>
 
@@ -33,9 +35,13 @@ const SignUpPage = () => {
         </div>
       </div>
 
-      {/* Right Column */}
-      <div className="w-1/2">
-        <img src={backgrounImage} alt="Background" />
+      {/* Right Column (Image - Hidden on Mobile) */}
+      <div className="hidden md:block w-1/2">
+        <img
+          src={backgrounImage}
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
   );

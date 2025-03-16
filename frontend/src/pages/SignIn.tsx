@@ -4,12 +4,14 @@ import AuthForm from "../components/Form";
 
 const SignInPage = () => {
   return (
-    <div className="flex h-screen">
-      {/* Left Column */}
-      <div className="w-1/2 flex flex-col items-center justify-center p-6">
+    <div className="flex h-screen flex-col md:flex-row">
+      {/* Left Column (Form) */}
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6">
         <div className="flex flex-col w-full max-w-md">
-          <div className="font-bold text-[28px]">Welcome back!</div>
-          <div className="font-normal text-[14px] mt-2">
+          <div className="font-bold text-[28px] text-center md:text-left">
+            Welcome back!
+          </div>
+          <div className="font-normal text-[14px] mt-2 text-center md:text-left">
             Enter your credentials to access your account
           </div>
 
@@ -33,9 +35,13 @@ const SignInPage = () => {
         </div>
       </div>
 
-      {/* Right Column */}
-      <div className="w-1/2">
-        <img src={backgrounImage} alt="Background" />
+      {/* Right Column (Image - Hidden on Small Screens) */}
+      <div className="hidden md:block w-1/2">
+        <img
+          src={backgrounImage}
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
   );
